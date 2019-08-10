@@ -6,7 +6,7 @@ import demos from './demos'
 
 
 function App() {
-  let [route] = useBistate({ value: '' })
+  let route = useBistate({ value: '' })
   let updateRoute = useMutate(value => {
     route.value = value
   })

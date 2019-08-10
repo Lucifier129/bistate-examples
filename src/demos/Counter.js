@@ -3,7 +3,7 @@ import { useBistate, useMutate } from 'bistate/react'
 import useSessionStorage from '../hooks/useSessionStorage'
 
 export default function Counter() {
-  let [state] = useBistate({ count: 0 })
+  let state = useBistate({ count: 0 })
 
   let incre = useMutate(() => {
     state.count += 1

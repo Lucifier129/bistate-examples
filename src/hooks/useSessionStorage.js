@@ -10,9 +10,16 @@ export default function useSessionStorage({ key, getter, setter }) {
       ref.current.setter(JSON.parse(json))
     }
 
-    return () => {
+    let saveToStorage = () => {
       let value = JSON.stringify(ref.current.getter())
       window.sessionStorage.setItem(key, value)
+    }
+
+    window.addEventListener('beforeunload', saveToStorage, false)
+
+    return () => {
+      saveToStorage()
+      window.removeEventListener('beforeunload', saveToStorage, false)
     }
   }, [])
 
